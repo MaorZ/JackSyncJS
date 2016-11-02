@@ -1,9 +1,14 @@
-// This class is the base Patch Operation
-export abstract class PatchOperation {
-  // The constructor gets the "path" of the operation
-  // the "path" member that all kind of PatchOperations have
-  constructor(public path: String) {}
+import { OperationTypeEnum } from "./operationTypeEnum";
 
-  // It declares the "apply" function that should implement the PatchOperation Logic itself
-  abstract apply(source: Object): void;
+// This class is the base Patch Operation
+export class PatchOperation {
+  private _operationName: string;
+
+  constructor(public patchObject: Object) {
+    this._operationName = this.patchObject["op"].toUpperCase();
+  }
+
+  getOperationType(): OperationTypeEnum {
+    return OperationTypeEnum[this._operationName];
+  }
 }
