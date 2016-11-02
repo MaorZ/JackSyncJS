@@ -1,0 +1,10 @@
+1. First run: "npm init"
+2. Then install the needed dependencies: "npm i typescript webpack ts-loader karma karma-typescript-preprocessor2 karma-webpack jasmine-core karma-chrome-launcher karma-jasmine karma-mocha-reporter karma-sourcemap-loader --save-dev"
+3. Create the following file "webpack.config.js":
+4. Create the following file "karma.conf.js":
+5. Create the following file "tsconfig.json":
+6. Install the TSD globally: "npm install -g tsd"
+7. Run the following commands:
+	"tsd init"
+	"tsd install jasmine -s"
+8. 
