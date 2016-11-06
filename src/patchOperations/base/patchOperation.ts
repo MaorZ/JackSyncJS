@@ -1,14 +1,27 @@
 import { OperationTypeEnum } from "./operationTypeEnum";
+import { JsonPointer } from "./jsonPointer";
 
 // This class is the base Patch Operation
-export class PatchOperation {
-  private _operationName: string;
+export abstract class PatchOperation {
+  private _operationType: OperationTypeEnum;
+  private _operationPath: JsonPointer;
 
-  constructor(public patchObject: Object) {
-    this._operationName = this.patchObject["op"].toUpperCase();
+  constructor(patchObject: Object) {
+    this._operationType = OperationTypeEnum[
+      OperationTypeEnum[
+        patchObject["op"].toUpperCase()
+      ]
+    ];
+    this._operationPath = new JsonPointer(patchObject["path"]);
   }
 
-  getOperationType(): OperationTypeEnum {
-    return OperationTypeEnum[this._operationName];
+  abstract apply(target: Object): Object;
+
+  get opertaionType(): OperationTypeEnum {
+    return this._operationType;
+  }
+
+  get opertaionPath(): JsonPointer {
+    return this._operationPath;
   }
 }
