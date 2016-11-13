@@ -1,9 +1,11 @@
 import { PatchOperation } from "../base/patchOperation";
+import { OperationTypeEnum } from "../base/operationTypeEnum";
 
 export class AddOpertaion extends PatchOperation {
   private _value: Object;
 
   constructor(patchObject: Object) {
+    patchObject["op"] = OperationTypeEnum[OperationTypeEnum.ADD];
     super(patchObject);
     this._value = patchObject["value"];
   }

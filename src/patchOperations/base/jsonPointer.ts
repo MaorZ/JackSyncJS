@@ -55,12 +55,11 @@ export class JsonPointer {
       return null;
     }
 
-    if (tokens.length === 1 && tokens[0] === "") {
-      return target;
-    }
+    // removes the empty string token (the root token)
+    tokens.shift();
 
-    for (let token in tokens) {
-      target = target[token];
+    for (let tokenIndex in tokens) {
+      target = target[tokens[tokenIndex]];
     }
 
     return target;
